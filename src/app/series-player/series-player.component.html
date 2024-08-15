@@ -1,0 +1,59 @@
+<div class="container mt-5" *ngIf="series">
+    <div class="movie-container">
+      <div class="movie-details">
+        <img [src]="series.poster_path" alt="Movie Picture" class="movie-image">
+        <div class="movie-info">
+          <h1 class="text-white"><b>{{ series.original_name }}</b></h1>
+          <p style="color: #9ACD32">{{ series.overview }}</p>
+          <p class="text-white">Number of seasons: {{ series.number_of_seasons }}</p>
+          <p class="text-white">{{ series.Genres.join(', ') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-5" *ngIf="selectedEpisodeUrl">
+    <h1 class="text-white">Currently Watching: {{ series.original_name }} - Episode {{ selectedEpisodeNumber }}</h1>  <!-- Display the episode number -->
+  </div>
+  
+  <div *ngIf="selectedEpisodeUrl" class="container mt-5">
+    <iframe [src]="selectedEpisodeUrl" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+  <div class="container mt-5" *ngIf="series">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div *ngFor="let season of series.seasons; let i = index" class="accordion-item">
+        <h2 class="accordion-header" id="flush-heading{{i}}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse' + i" aria-expanded="false" [attr.aria-controls]="'flush-collapse' + i">
+            {{ season.name }}
+          </button>
+        </h2>
+        <div [id]="'flush-collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-heading' + i" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <div class="episode-list">
+              <div *ngFor="let episode of season.episodes" class="episode-item">
+                <button (click)="playEpisode(season.season_number, episode.episode)">
+                  Play Episode {{ episode.episode }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-5">
+    <h1 class="text-white">You might also like</h1>
+  </div>
+  
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-2" *ngFor="let series of getSlicedSeries()" (click)="navigateToSeries(series.id)">
+        <img [src]="series.profile_picture_url" class="w-100" alt="Movie Picture">
+        <p class="text-white mt-3" style="font-size: 18px"><b>{{ series.original_name }}</b></p>
+        <p class="text-white">{{ series.release_date }}</p>
+      </div>
+    </div>
+  </div>
+  

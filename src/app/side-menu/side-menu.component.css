@@ -1,0 +1,35 @@
+.navbar-custom {
+  background-color: black;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: #9ACD32;
+  margin-right: 20px; /* Add more gap between links */
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+.navbar-custom .navbar-toggler {
+  border-color: #9ACD32;
+}
+
+.navbar-text {
+  color: #9ACD32;
+  margin-left: auto; /* Push text to the right */
+}
+
+/* Ensure content below the navbar isn't hidden */
+.content {
+  margin-top: 56px; /* Adjust this value if your navbar height is different */
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #9ACD32;
+  color: #fff;
+}

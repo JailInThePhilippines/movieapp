@@ -1,0 +1,48 @@
+.movie-image {
+  width: 200px; /* Adjusted size */
+  height: 250px; /* Adjusted size */
+  border-radius: 10px;
+}
+
+.backdrop-image {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+img {
+  box-shadow: -3px 5px 32px -4px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: -3px 5px 32px -4px rgba(0, 0, 0, 1);
+  -moz-box-shadow: -3px 5px 32px -4px rgba(0, 0, 0, 1);
+}
+
+.movie-container {
+  display: flex;
+  align-items: center;
+}
+
+.movie-details {
+  display: flex;
+  align-items: center;
+}
+
+.movie-info {
+  margin-left: 25px; /* Adjust the spacing as needed */
+}
+
+.text-white {
+  color: white;
+}
+
+iframe {
+  width: 100%;
+  height: 700px;
+  border-radius: 10px;
+}
+
+.col-md-2:hover {
+  border: 2px solid #FFD700; /* Gold color for highlighting */
+  border-radius: 10px; /* Match the border-radius of the image */
+  cursor: pointer;
+}

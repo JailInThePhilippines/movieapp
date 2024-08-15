@@ -1,0 +1,24 @@
+img {
+    border-radius: 10px;
+  }
+  
+  .col-md-2:hover {
+    border: 2px solid #FFD700; /* Gold color for highlighting */
+    border-radius: 10px; /* Match the border-radius of the image */
+    cursor: pointer;
+  }
+  
+  .pagination-controls {
+    margin-bottom: 1rem; /* Adjust as needed */
+  }
+  
+  @media (max-width: 768px) {
+    .container.d-flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .pagination-controls {
+      margin-top: 1rem; /* Adjust as needed */
+    }
+  }
+  

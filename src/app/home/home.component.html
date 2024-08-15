@@ -1,0 +1,82 @@
+<div class="container mt-5 d-flex justify-content-between">
+    <div *ngIf="searchResults.length === 0 && !searchInitiated">
+        <h1 class="text-white"><b>Featured</b></h1>
+        <h3 style="color: #757575;">Movie Of The Week</h3>
+    </div>
+    <div class="w-50">
+        <input [formControl]="searchControl" (keyup)="onKeyUp($event)" placeholder="Search for a movie" class="form-control" />
+    </div>
+</div>
+
+<div *ngIf="searchResults.length > 0; else mainContent" class="container mt-3">
+    <div class="row">
+        <div class="col-md-2" *ngFor="let result of searchResults" (click)="openMovieDetails(result.id)">
+            <img [src]="result.profile_picture_url" class="w-100" alt="Movie Picture">
+            <h5 class="text-white mt-3"><b>{{ result.title }}</b></h5>
+            <p class="text-white">{{ getGenreNames(result.genre_ids) }}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #mainContent>
+    <div *ngIf="searchResults.length === 0 && searchInitiated" class="container mt-3">
+        <h3 class="text-white">Movie Not Found</h3>
+    </div>
+    <div class="container mt-3">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item" *ngFor="let movie of getSlicedMovies(); let i = index" [ngClass]="{'active': i === 0}" (click)="openMovieDetails(movie.id)">
+                    <img [src]="'https://image.tmdb.org/t/p/w1280' + movie.backdrop_path" class="d-block w-100 carousel-image" alt="Movie Picture">
+                    <div class="carousel-caption">
+                        <h5 class="text-white"><b>{{ movie.title }}</b></h5>
+                        <p class="text-white mt-4">{{ movie.overview }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h1 class="text-white"><b>Popular</b></h1>
+        <h3 style="color: #757575;">Movies</h3>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-2" *ngFor="let movie of getSlicedPopularMovies()" (click)="openMovieDetails(movie.id)">
+                <img [src]="movie.profile_picture_url" class="w-100" alt="Movie Picture">
+                <p class="text-white mt-3" style="font-size: 18px"><b>{{ movie.title }}</b></p>
+                <p class="text-white">{{ getGenreNames(movie.genre_ids) }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h1 class="text-white"><b>Top Rated</b></h1>
+        <h3 style="color: #757575;">Movies</h3>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-2" *ngFor="let movie of getSlicedTopRatedMovies()" (click)="openMovieDetails(movie.id)">
+                <img [src]="movie.profile_picture_url" class="w-100" alt="Movie Picture">
+                <p class="text-white mt-3" style="font-size: 18px"><b>{{ movie.title }}</b></p>
+                <p class="text-white">{{ getGenreNames(movie.genre_ids) }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h1 class="text-white"><b>TV Shows</b></h1>
+        <h3 style="color: #757575;">Popular</h3>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-2" *ngFor="let tvshow of getSlicedTVShows()" (click)="openTVShowDetails(tvshow.id)">
+                <img [src]="tvshow.profile_picture_url" class="w-100" alt="TV Show Picture">
+                <p class="text-white mt-3" style="font-size: 18px"><b>{{ tvshow.name }}</b></p>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color: #9ACD32;">LFlix</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/movie">Movies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tvshows">Shows</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Genre
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let genre of genres">
+              <a class="dropdown-item" (click)="filterByGenre(genre.id)">{{ genre.name }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        Powered by TMDB, VIDSRC, LLJ
+      </span>
+    </div>
+  </div>
+</nav>
